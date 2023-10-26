@@ -1,1 +1,67 @@
 @import 'reset';
+@import 'variables';
+@import 'mixins';
+
+html, body {
+  --moz-osx-font-smoothing: grayscale;
+  font-family: sans-serif;
+  background-color: $lightGrey;
+  color: #000000;
+  font-size: $text-sm;
+  overflow-x: hidden;
+}
+
+image {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: $darkGrey;
+
+  &:hover {
+    opacity: .8;
+    cursor: pointer;
+  }
+}
+
+input {
+  border: 1px solid $midGrey;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 10px;
+
+  &:focus {
+    border: 2px solid $midBlue;
+    outline: none;
+  }
+}
+
+button {
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+}
+
+.btn {
+  font-weight: $font-bold;
+
+  &--blue {
+    background-color: $midBlue;
+    color: $white;
+  }
+
+  &--red {
+    background-color: $midRed;
+    color: $white;
+  }
+
+  &--green {
+    background-color: $midGreen;
+    color: $white;
+  }
+
+  &:hover {
+    opacity: .8;
+  }
+}
