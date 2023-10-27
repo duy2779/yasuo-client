@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client'
 import { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import bg from '~/assets/auth_bg.jpg'
+import bg from '~/assets/auth_bg.png'
 import { graphql } from '~/gql/gql'
 import { setJwtToken } from '~/utils/jwt'
 import './styles.scss'
@@ -44,15 +44,16 @@ const Login = () => {
     <div className='login__container'>
       <div className='login__left'>
         <div className='login__section'>
-          <h2 className='login__title'>Welcome Back</h2>
+          <h2 className='login__title'>Welcome Back 👋</h2>
           <h4 className='login__desc'>Enter your credentials to access your account</h4>
           <form action='' className='login__form' onSubmit={onSubmit}>
             <div className='login__form-field'>
-              <label htmlFor='email'>Email</label>
+              <label htmlFor='email'>Username</label>
               <input
+                className='input input--xl'
                 name='email'
                 type='text'
-                placeholder='email@gmail.com'
+                placeholder='Enter your username'
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
@@ -60,6 +61,7 @@ const Login = () => {
             <div className='login__form-field'>
               <label htmlFor='password'>Password</label>
               <input
+                className='input input--xl'
                 name='password'
                 type='password'
                 placeholder='min 8 chars'
@@ -68,7 +70,7 @@ const Login = () => {
               />
             </div>
             <div className='login__form-action'>
-              <button type='submit' className='login__form-submit-btn btn btn--blue'>
+              <button type='submit' className='login__form-submit-btn btn btn--blue btn--xl'>
                 Login
               </button>
             </div>

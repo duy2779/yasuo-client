@@ -1,10 +1,12 @@
+@import url('https://fonts.cdnfonts.com/css/montserrat');
+
 @import 'reset';
 @import 'variables';
 @import 'mixins';
 
 html, body {
   --moz-osx-font-smoothing: grayscale;
-  font-family: sans-serif;
+  font-family: 'Montserrat', sans-serif;
   background-color: $lightGrey;
   color: #000000;
   font-size: $text-sm;
@@ -32,8 +34,16 @@ input {
   border-radius: 10px;
 
   &:focus {
-    border: 2px solid $midBlue;
+    border: 1px solid $midBlue;
     outline: none;
+    box-shadow: 0 0 0 2px #e7f3ff;
+  }
+}
+
+.input {
+  &--xl {
+    height: 52px;
+    padding: 0 12px;
   }
 }
 
@@ -45,6 +55,11 @@ button {
 
 .btn {
   font-weight: $font-bold;
+
+  &:hover {
+    cursor: pointer;
+    opacity: .8;
+  }
 
   &--blue {
     background-color: $midBlue;
@@ -61,7 +76,9 @@ button {
     color: $white;
   }
 
-  &:hover {
-    opacity: .8;
+
+  &--xl {
+    font-size: $text-sm;
+    height: 52px;
   }
 }
