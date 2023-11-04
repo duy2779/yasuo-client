@@ -1,6 +1,5 @@
 export enum APP_CONSTANT {
-  JWT = 'jwt',
-  REFRESH_TOKEN = 'refreshToken'
+  JWT = 'jwt'
 }
 
 export enum ERROR_CODE {

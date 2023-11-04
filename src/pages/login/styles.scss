@@ -47,8 +47,13 @@
       margin-bottom: 8px;
     }
 
-    input {
+    .input__container {
+      display: flex;
       width: 500px;
+
+      input {
+        flex: 1;
+      }
     }
   }
 
@@ -65,5 +70,19 @@
       color: $midBlue;
       font-weight: $font-bold;
     }
+  }
+
+  &__errors {
+    margin-top: 20px;
+  }
+
+  &__error {
+    text-align: center;
+    color: $midRed;
+  }
+
+  &__input-message {
+    color: $midRed;
+    margin-top: 10px;
   }
 }

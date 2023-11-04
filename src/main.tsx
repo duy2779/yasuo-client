@@ -1,13 +1,30 @@
-import { ApolloProvider } from '@apollo/client'
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
-import client from './utils/apolloClient.ts'
+import AuthContextProvider from './context/AuthContext.tsx'
+import CustomApolloProvider from './utils/CustomApolloProvider.tsx'
+
+if (typeof window !== 'undefined') {
+  if (!sessionStorage.length) {
+    localStorage.setItem('getSessionStorage', String(Date.now()))
+  }
+
+  window.addEventListener('storage', (event) => {
+    if (event.key == 'getSessionStorage') {
+      localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage))
+      localStorage.removeItem('sessionStorage')
+    } else if (event.key == 'sessionStorage' && !sessionStorage.length) {
+      const data = JSON.parse(event.newValue as string)
+      for (let key in data) {
+        sessionStorage.setItem(key, data[key])
+      }
+    }
+  })
+}
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <ApolloProvider client={client}>
-    <React.StrictMode>
+  <AuthContextProvider>
+    <CustomApolloProvider>
       <App />
-    </React.StrictMode>
-  </ApolloProvider>
+    </CustomApolloProvider>
+  </AuthContextProvider>
 )

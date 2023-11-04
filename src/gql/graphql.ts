@@ -16,19 +16,17 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type AuthenticationResponse = {
+  __typename?: 'AuthenticationResponse';
+  accessToken?: Maybe<Scalars['String']['output']>;
+};
+
 export type Event = {
   __typename?: 'Event';
   content?: Maybe<Scalars['String']['output']>;
   createdDate?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['ID']['output']>;
   name?: Maybe<Scalars['String']['output']>;
-};
-
-export type JwtAuthenticationResponse = {
-  __typename?: 'JwtAuthenticationResponse';
-  accessToken?: Maybe<Scalars['String']['output']>;
-  refreshToken?: Maybe<Scalars['String']['output']>;
-  username?: Maybe<Scalars['String']['output']>;
 };
 
 export type LoginRequest = {
@@ -38,7 +36,8 @@ export type LoginRequest = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  login?: Maybe<JwtAuthenticationResponse>;
+  login?: Maybe<AuthenticationResponse>;
+  logout?: Maybe<ResponseDto>;
 };
 
 
@@ -49,15 +48,39 @@ export type MutationLoginArgs = {
 export type Query = {
   __typename?: 'Query';
   findAll?: Maybe<Array<Maybe<Event>>>;
-  refreshToken?: Maybe<JwtAuthenticationResponse>;
+  refreshToken?: Maybe<AuthenticationResponse>;
 };
+
+
+export type QueryRefreshTokenArgs = {
+  userFingerprintHash: Scalars['String']['input'];
+};
+
+export type ResponseDto = {
+  __typename?: 'ResponseDto';
+  code?: Maybe<Scalars['Int']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
+  success?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type LogoutMutation = { __typename?: 'Mutation', logout?: { __typename?: 'ResponseDto', code?: number | null, success?: boolean | null, message?: string | null } | null };
+
+export type EventDetailsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type EventDetailsQuery = { __typename?: 'Query', findAll?: Array<{ __typename?: 'Event', id?: string | null, name?: string | null, content?: string | null, createdDate?: string | null } | null> | null };
 
 export type LoginMutationVariables = Exact<{
   loginRequest: LoginRequest;
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login?: { __typename?: 'JwtAuthenticationResponse', accessToken?: string | null, refreshToken?: string | null } | null };
+export type LoginMutation = { __typename?: 'Mutation', login?: { __typename?: 'AuthenticationResponse', accessToken?: string | null } | null };
 
 
-export const LoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"login"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"loginRequest"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"LoginRequest"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"login"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"loginRequest"},"value":{"kind":"Variable","name":{"kind":"Name","value":"loginRequest"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"accessToken"}},{"kind":"Field","name":{"kind":"Name","value":"refreshToken"}}]}}]}}]} as unknown as DocumentNode<LoginMutation, LoginMutationVariables>;
+export const LogoutDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"logout"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logout"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"success"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<LogoutMutation, LogoutMutationVariables>;
+export const EventDetailsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"eventDetails"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findAll"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"createdDate"}}]}}]}}]} as unknown as DocumentNode<EventDetailsQuery, EventDetailsQueryVariables>;
+export const LoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"login"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"loginRequest"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"LoginRequest"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"login"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"loginRequest"},"value":{"kind":"Variable","name":{"kind":"Name","value":"loginRequest"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"accessToken"}}]}}]}}]} as unknown as DocumentNode<LoginMutation, LoginMutationVariables>;

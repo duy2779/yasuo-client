@@ -1,0 +1,33 @@
+.header {
+  background-color: $white;
+
+  &__container {
+    min-height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+  }
+
+  &__left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+  }
+
+  &__title {
+    font-weight: $font-bold;
+    font-size: $text-lg;
+    cursor: pointer;
+  }
+
+  &__logo {
+    cursor: pointer;
+  }
+}

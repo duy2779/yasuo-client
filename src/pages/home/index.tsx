@@ -1,12 +1,30 @@
-import { Link } from 'react-router-dom'
+import { useQuery } from '@apollo/client'
+import { graphql } from '~/gql'
 
 const Home = () => {
+  const GET_ALL_EVENT = graphql(/* GraphQL */
+  `
+    query eventDetails {
+      findAll {
+        id
+        name
+        content
+        createdDate
+      }
+    }
+  `)
+
+  const { data, loading, error } = useQuery(GET_ALL_EVENT)
+
   return (
-    <div>
-      <h1>Home</h1>
-      <Link to='.'>Home</Link>
-      <Link to='register'>Register</Link>
-      <Link to='login'>Login</Link>
+    <div className='page-content'>
+      {loading && <p>Loading...</p>}
+      {data?.findAll?.length && (
+        <ul>
+          {error && <p>{error.message}</p>}
+          {data?.findAll?.map((event) => <li key={event?.id}>{event?.name}</li>)}
+        </ul>
+      )}
     </div>
   )
 }
