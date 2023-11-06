@@ -1,4 +1,6 @@
-const Register = () => {
+type Props = {}
+
+function Profile({}: Props) {
   return (
     <div className='page-content'>
       <h1>Profile page</h1>
@@ -6,4 +8,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Profile
