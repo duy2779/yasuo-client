@@ -12,7 +12,7 @@ export default defineConfig({
     devSourcemap: true,
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "~/scss/global";`
+        additionalData: `@import "./src/_mantine";`
       }
     }
   },

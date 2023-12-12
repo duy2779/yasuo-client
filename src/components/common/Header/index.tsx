@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import logo from '~/assets/tornado.svg'
 import { useAuthContext } from '~/context/AuthContext'
 import { graphql } from '~/gql'
-import './styles.scss'
 
 type Props = {}
 

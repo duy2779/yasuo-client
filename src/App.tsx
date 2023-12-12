@@ -1,12 +1,16 @@
+import { MantineProvider } from '@mantine/core'
+import '@mantine/core/styles.css'
+import { useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Home from './pages/home'
-import Login from './pages/login'
-import Register from './pages/register'
 import ProtectedRoute from './components/common/ProtectedRoute'
 import { useAuthContext } from './context/AuthContext'
-import { useEffect, useState } from 'react'
-import AppLayout from './components/common/AppLayout'
-import Profile from './pages/profile'
+import AppLayout from './layouts/AppLayout'
+import CreatePost from './pages/CreateGroup'
+import Home from './pages/Home'
+import Login from './pages/Login'
+import Profile from './pages/Profile'
+import Register from './pages/Register'
+import { theme } from './theme'
 
 function App() {
   const { checkAuth } = useAuthContext()
@@ -24,23 +28,26 @@ function App() {
   if (loading) return <p>Loading...</p>
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path='/'
-          element={
-            <ProtectedRoute>
-              <AppLayout />
-            </ProtectedRoute>
-          }
-        >
-          <Route path='' element={<Home />} />
-          <Route path='profile' element={<Profile />} />
-        </Route>
-        <Route path='login' element={<Login />} />
-        <Route path='register' element={<Register />} />
-      </Routes>
-    </BrowserRouter>
+    <MantineProvider theme={theme} defaultColorScheme='dark'>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route path='' element={<Home />} />
+            <Route path='profile' element={<Profile />} />
+          </Route>
+          <Route path='create-group' element={<CreatePost />} />
+          <Route path='login' element={<Login />} />
+          <Route path='register' element={<Register />} />
+        </Routes>
+      </BrowserRouter>
+    </MantineProvider>
   )
 }
 
